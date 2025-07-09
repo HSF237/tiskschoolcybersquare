@@ -23,7 +23,7 @@ navLinkElements.forEach(link => {
 // WhatsApp contact form submission
 const contactForm = document.getElementById('contact-form');
 const formMessage = document.getElementById('form-message');
-const whatsappNumber = "919745544623"; // ✅ Replace with your number
+const whatsappNumber = "919605229939"; // ✅ Replace with your number
 
 contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
