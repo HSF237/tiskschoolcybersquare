@@ -15,16 +15,15 @@
         <li><a href="#home" class="nav-link active">Home</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#course" class="nav-link">Course</a></li>
+        <li><a href="#curriculum" class="nav-link">Curriculum</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-        &#9776;
-      </button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
     </nav>
   </header>
 
   <main>
-    <!-- Home Section -->
+    <!-- Hero Section -->
     <section id="home" class="hero-section container">
       <div class="hero-text">
         <h1>Welcome to Tisk School Cybersquare</h1>
@@ -39,19 +38,13 @@
     <!-- About Section -->
     <section id="about" class="about-section container">
       <h2>About Tisk School Cybersquare</h2>
-      <p>
-        Tisk School Cybersquare is dedicated to providing high-quality education focused on cyber technologies and digital skills.
-        Our mission is to prepare students for the future with expert instructors, hands-on learning, and a community of peers.
-      </p>
-      <p>
-        Join us to advance your skills in cybersecurity, programming, and digital creativity.
-      </p>
+      <p>Tisk School Cybersquare is dedicated to providing high-quality education focused on cyber technologies and digital skills.</p>
+      <p>Join us to advance your skills in cybersecurity, programming, and digital creativity.</p>
     </section>
 
     <!-- Course Section -->
     <section id="course" class="course-section container">
       <h2>Cybersquare Course Details</h2>
-
       <div class="course-cards">
         <div class="course-card">
           <h3>Cybersecurity Fundamentals</h3>
@@ -66,56 +59,64 @@
           <p>Explore graphic design, digital marketing, and creative problem-solving using technology.</p>
         </div>
       </div>
-
       <p class="course-fee"><strong>Course Fee:</strong> ₹2,000</p>
+    </section>
+
+    <!-- NEW Curriculum Section -->
+    <section id="curriculum" class="course-section container">
+      <h2>CyberSquare Curriculum</h2>
+      <div class="course-cards">
+        <div class="course-card">
+          <h3>Grades 1–2</h3>
+          <ul>
+            <li>Visual Coding</li>
+            <li>Robotics & IoT</li>
+          </ul>
+        </div>
+        <div class="course-card">
+          <h3>Grades 3–5</h3>
+          <ul>
+            <li>Visual Coding</li>
+            <li>Robotics & IoT</li>
+            <li>AI</li>
+          </ul>
+        </div>
+        <div class="course-card">
+          <h3>Grades 6–7</h3>
+          <ul>
+            <li>Programming</li>
+            <li>Robotics & IoT</li>
+            <li>AI</li>
+          </ul>
+        </div>
+        <div class="course-card">
+          <h3>Grades 8+</h3>
+          <ul>
+            <li>Programming</li>
+            <li>Web Applications</li>
+            <li>AI</li>
+            <li>Robotics & IoT</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section container">
       <h2>Contact Us</h2>
       <form id="contact-form" novalidate>
-        <div class="form-control">
-          <label for="name">Full Name *</label>
-          <input type="text" id="name" name="name" placeholder="Your full name" required />
-          <small class="error-message"></small>
-        </div>
-
-        <div class="form-control">
-          <label for="age">Age *</label>
-          <input type="number" id="age" name="age" placeholder="Your age" min="5" max="100" required />
-          <small class="error-message"></small>
-        </div>
-
-        <div class="form-control">
-          <label for="class">Class *</label>
-          <input type="text" id="class" name="class" placeholder="Your class (e.g. 8th, 10th, etc.)" required />
-          <small class="error-message"></small>
-        </div>
-
-        <div class="form-control">
-          <label for="admission">Admission Number *</label>
-          <input type="text" id="admission" name="admission" placeholder="Admission Number" required />
-          <small class="error-message"></small>
-        </div>
-
-        <div class="form-control">
-          <label for="phone">Phone Number *</label>
-          <input type="tel" id="phone" name="phone" placeholder="+91 9876543210" pattern="[+0-9\s]{10,15}" required />
-          <small class="error-message"></small>
-        </div>
-
+        <div class="form-control"><label for="name">Full Name *</label><input type="text" id="name" required /><small class="error-message"></small></div>
+        <div class="form-control"><label for="age">Age *</label><input type="number" id="age" required /><small class="error-message"></small></div>
+        <div class="form-control"><label for="class">Class *</label><input type="text" id="class" required /><small class="error-message"></small></div>
+        <div class="form-control"><label for="admission">Admission Number *</label><input type="text" id="admission" required /><small class="error-message"></small></div>
+        <div class="form-control"><label for="phone">Phone Number *</label><input type="tel" id="phone" required /><small class="error-message"></small></div>
         <button type="submit" class="btn-primary">Send via WhatsApp</button>
         <p id="form-message" class="form-message"></p>
       </form>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2024 Tisk School Cybersquare. All rights reserved.</p>
-    </div>
-  </footer>
-
+  <footer class="footer"><div class="container"><p>&copy; 2024 Tisk School Cybersquare. All rights reserved.</p></div></footer>
   <script src="script.js"></script>
 </body>
 </html>
