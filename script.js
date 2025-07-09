@@ -99,7 +99,7 @@ Admission Number: ${admissionInput.value.trim()}
 Phone Number: ${phoneInput.value.trim()}`;
 
   const encodedMessage = encodeURIComponent(message);
-  const whatsappURL = `https://wa.me/${9745544623}?text=${encodedMessage}`;
+  const whatsappURL = `https://wa.me/${phonemumber}?text=${encodedMessage}`;
 
   // Open WhatsApp
   let opened = window.open(whatsappURL, '_blank');
