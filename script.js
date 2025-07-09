@@ -11,7 +11,6 @@ const navLinkElements = document.querySelectorAll('.nav-link');
 
 navLinkElements.forEach(link => {
   link.addEventListener('click', function () {
-    // close nav menu on mobile after click
     if (navLinks.classList.contains('open')) {
       navLinks.classList.remove('open');
     }
@@ -25,17 +24,13 @@ navLinkElements.forEach(link => {
 const contactForm = document.getElementById('contact-form');
 const formMessage = document.getElementById('form-message');
 
-// Replace this with your school's WhatsApp number including country code.
-// Example for India: "919876543210"
-const whatsappNumber = "919745544623";
+// WhatsApp number (with country code, no '+' sign)
+const whatsappNumber = "919876543210"; // Replace with your school's number
 
 contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  // Clear previous messages
-  formMessage.textContent = '';
-
-  // Get inputs
+  // Get input elements
   const nameInput = document.getElementById('name');
   const ageInput = document.getElementById('age');
   const classInput = document.getElementById('class');
@@ -52,41 +47,50 @@ contactForm.addEventListener('submit', (e) => {
 
   let valid = true;
 
+  // Clear previous errors
   inputs.forEach(({ el }) => {
+    el.classList.remove('error');
     const errorElem = el.nextElementSibling;
-    if (!el.value.trim()) {
+    if (errorElem) errorElem.textContent = '';
+  });
+
+  // Validate inputs
+  inputs.forEach(({ el, name }) => {
+    const value = el.value.trim();
+    const errorElem = el.nextElementSibling;
+    if (!value) {
       el.classList.add('error');
-      errorElem.textContent = "This field is required";
+      if (errorElem) errorElem.textContent = `${name} is required`;
       valid = false;
-    } else {
-      el.classList.remove('error');
-      errorElem.textContent = '';
     }
   });
 
-  // Additional phone and age validations
-  if (phoneInput.value.trim() && !validatePhone(phoneInput.value.trim())) {
-    phoneInput.classList.add('error');
-    phoneInput.nextElementSibling.textContent = "Invalid phone number";
-    valid = false;
-  }
-
-  if (ageInput.value.trim() && (ageInput.value < 5 || ageInput.value > 100)) {
+  // Validate age
+  const age = parseInt(ageInput.value.trim());
+  if (age && (age < 5 || age > 100)) {
     ageInput.classList.add('error');
     ageInput.nextElementSibling.textContent = "Age must be between 5 and 100";
     valid = false;
   }
 
+  // Validate phone number (Indian format)
+  const phone = phoneInput.value.trim();
+  const phoneRegex = /^[6-9]\d{9}$/;
+  if (phone && !phoneRegex.test(phone)) {
+    phoneInput.classList.add('error');
+    phoneInput.nextElementSibling.textContent = "Invalid phone number";
+    valid = false;
+  }
+
   if (!valid) {
     formMessage.style.color = '#e74c3c';
-    formMessage.textContent = 'Please fix errors before submitting.';
+    formMessage.textContent = 'Please correct the highlighted fields.';
     return;
   }
 
   // Build WhatsApp message
   const message = 
 `Hello, I am interested in the Cybersquare course at Tisk School.
-Here are my details:
 
 Name: ${nameInput.value.trim()}
 Age: ${ageInput.value.trim()}
@@ -94,19 +98,17 @@ Class: ${classInput.value.trim()}
 Admission Number: ${admissionInput.value.trim()}
 Phone Number: ${phoneInput.value.trim()}`;
 
-  // URL encode message
   const encodedMessage = encodeURIComponent(message);
-
-  // WhatsApp URL to open
   const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-  // Open WhatsApp in new tab — to avoid popup blocker, try location.href as fallback
+  // Open WhatsApp
   let opened = window.open(whatsappURL, '_blank');
   if (!opened) {
-    // Popup blocked, so use location.href as fallback
     window.location.href = whatsappURL;
   }
 
-  // Reset form and show success message
+  // Reset form
   contactForm.reset();
- 
+  formMessage.style.color = 'green';
+  formMessage.textContent = 'Opening WhatsApp...';
+});
