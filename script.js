@@ -25,8 +25,8 @@ navLinkElements.forEach(link => {
 const contactForm = document.getElementById('contact-form');
 const formMessage = document.getElementById('form-message');
 
-// Put your WhatsApp number here (country code + no spaces or special chars)
-const whatsappNumber = "919745544623"; // Replace with your school's WhatsApp number
+// Your school's WhatsApp number
+const whatsappNumber = "919745544623";
 
 contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -34,7 +34,7 @@ contactForm.addEventListener('submit', (e) => {
   // Clear previous messages
   formMessage.textContent = '';
 
-  // Validate inputs
+  // Get inputs
   const nameInput = document.getElementById('name');
   const ageInput = document.getElementById('age');
   const classInput = document.getElementById('class');
@@ -97,12 +97,15 @@ Phone Number: ${phoneInput.value.trim()}`;
   const encodedMessage = encodeURIComponent(message);
 
   // WhatsApp URL to open
-  const whatsappURL = window.open(`https://wa.me/${whatsappNumber}?text=Test%20message`, '_blank');
+  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-  // Open WhatsApp in new tab
-  window.open(whatsappURL, '_blank');
+  // Open WhatsApp in new tab — fallback to location.href if blocked
+  let opened = window.open(whatsappURL, '_blank');
+  if (!opened) {
+    window.location.href = whatsappURL;
+  }
 
-  // Optionally reset form and show success message
+  // Reset form and show success message
   contactForm.reset();
   formMessage.style.color = 'green';
   formMessage.textContent = 'Your message is ready in WhatsApp!';
