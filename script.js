@@ -23,9 +23,7 @@ navLinkElements.forEach(link => {
 // WhatsApp contact form submission
 const contactForm = document.getElementById('contact-form');
 const formMessage = document.getElementById('form-message');
-
-// WhatsApp number (with country code, no '+' sign)
-const whatsappNumber = "919745544623"; // Replace with your school's number
+const whatsappNumber = "919745544623"; // <-- Replace with your number
 
 contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -42,7 +40,7 @@ contactForm.addEventListener('submit', (e) => {
     { el: ageInput, name: 'Age' },
     { el: classInput, name: 'Class' },
     { el: admissionInput, name: 'Admission Number' },
-    { el: phoneInput, name: 'Phone Number' },
+    { el: phoneInput, name: 'Phone Number' }
   ];
 
   let valid = true;
@@ -99,7 +97,7 @@ Admission Number: ${admissionInput.value.trim()}
 Phone Number: ${phoneInput.value.trim()}`;
 
   const encodedMessage = encodeURIComponent(message);
-  const whatsappURL = `https://wa.me/${whatsappmumber}?text=${encodedMessage}`;
+  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
   // Open WhatsApp
   let opened = window.open(whatsappURL, '_blank');
