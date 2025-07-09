@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tisk School Cybersquare</title>
+  <meta name="description" content="Welcome to Tisk School Cybersquare, learn and grow with our Cybersquare course." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar container">
+      <div class="logo">Tisk School Cybersquare</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#course" class="nav-link">Course</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        &#9776;
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Home Section -->
+    <section id="home" class="hero-section container">
+      <div class="hero-text">
+        <h1>Welcome to Tisk School Cybersquare</h1>
+        <p>Empowering students through our exclusive Cybersquare course — join us and unlock your potential!</p>
+        <a href="#course" class="btn-primary">Explore the Course</a>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Students learning technology" />
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section container">
+      <h2>About Tisk School Cybersquare</h2>
+      <p>
+        Tisk School Cybersquare is dedicated to providing high-quality education focused on cyber technologies and digital skills.
+        Our mission is to prepare students for the future with expert instructors, hands-on learning, and a community of peers.
+      </p>
+      <p>
+        Join us to advance your skills in cybersecurity, programming, and digital creativity.
+      </p>
+    </section>
+
+    <!-- Course Section -->
+    <section id="course" class="course-section container">
+      <h2>Cybersquare Course Details</h2>
+
+      <div class="course-cards">
+        <div class="course-card">
+          <h3>Cybersecurity Fundamentals</h3>
+          <p>Learn the basics of securing systems and protecting data in an increasingly digital world.</p>
+        </div>
+        <div class="course-card">
+          <h3>Programming & Development</h3>
+          <p>Develop coding skills in popular languages including Python, JavaScript, and more.</p>
+        </div>
+        <div class="course-card">
+          <h3>Digital Creativity</h3>
+          <p>Explore graphic design, digital marketing, and creative problem-solving using technology.</p>
+        </div>
+      </div>
+
+      <p class="course-fee"><strong>Course Fee:</strong> ₹10,000</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section container">
+      <h2>Contact Us</h2>
+      <form id="contact-form" novalidate>
+        <div class="form-control">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required />
+          <small class="error-message"></small>
+        </div>
+
+        <div class="form-control">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          <small class="error-message"></small>
+        </div>
+
+        <div class="form-control">
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" rows="4" placeholder="Your message here" required></textarea>
+          <small class="error-message"></small>
+        </div>
+
+        <button type="submit" class="btn-primary">Send Message</button>
+        <p id="form-message" class="form-message"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 Tisk School Cybersquare. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
