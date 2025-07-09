@@ -25,7 +25,8 @@ navLinkElements.forEach(link => {
 const contactForm = document.getElementById('contact-form');
 const formMessage = document.getElementById('form-message');
 
-// Your school's WhatsApp number
+// Replace this with your school's WhatsApp number including country code.
+// Example for India: "919876543210"
 const whatsappNumber = "919745544623";
 
 contactForm.addEventListener('submit', (e) => {
@@ -99,20 +100,13 @@ Phone Number: ${phoneInput.value.trim()}`;
   // WhatsApp URL to open
   const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-  // Open WhatsApp in new tab — fallback to location.href if blocked
+  // Open WhatsApp in new tab — to avoid popup blocker, try location.href as fallback
   let opened = window.open(whatsappURL, '_blank');
   if (!opened) {
+    // Popup blocked, so use location.href as fallback
     window.location.href = whatsappURL;
   }
 
   // Reset form and show success message
   contactForm.reset();
-  formMessage.style.color = 'green';
-  formMessage.textContent = 'Your message is ready in WhatsApp!';
-});
-
-function validatePhone(phone) {
-  // Allow digits, + and spaces and length 10-15 characters
-  const re = /^[+0-9\s]{10,15}$/;
-  return re.test(phone);
-}
+ 
