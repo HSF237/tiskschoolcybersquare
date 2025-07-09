@@ -195,6 +195,8 @@ label {
 
 input[type="text"],
 input[type="email"],
+input[type="number"],
+input[type="tel"],
 textarea {
   width: 100%;
   padding: 0.75rem;
@@ -206,6 +208,8 @@ textarea {
 
 input[type="text"]:focus,
 input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
 textarea:focus {
   border-color: #f9a825;
   outline: none;
