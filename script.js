@@ -21,51 +21,95 @@ navLinkElements.forEach(link => {
   });
 });
 
-// Form validation
+// WhatsApp contact form submission
 const contactForm = document.getElementById('contact-form');
 const formMessage = document.getElementById('form-message');
+
+// Put your WhatsApp number here (country code + no spaces or special chars)
+const whatsappNumber = "919745544623"; // Replace with your school's WhatsApp number
 
 contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  // Clear previous errors
+  // Clear previous messages
   formMessage.textContent = '';
-  const inputs = ['name', 'email', 'message'];
+
+  // Validate inputs
+  const nameInput = document.getElementById('name');
+  const ageInput = document.getElementById('age');
+  const classInput = document.getElementById('class');
+  const admissionInput = document.getElementById('admission');
+  const phoneInput = document.getElementById('phone');
+
+  const inputs = [
+    { el: nameInput, name: 'Full Name' },
+    { el: ageInput, name: 'Age' },
+    { el: classInput, name: 'Class' },
+    { el: admissionInput, name: 'Admission Number' },
+    { el: phoneInput, name: 'Phone Number' },
+  ];
 
   let valid = true;
 
-  inputs.forEach(id => {
-    const input = document.getElementById(id);
-    const errorElem = input.nextElementSibling;
-    if (!input.value.trim()) {
-      input.classList.add('error');
+  inputs.forEach(({ el }) => {
+    const errorElem = el.nextElementSibling;
+    if (!el.value.trim()) {
+      el.classList.add('error');
       errorElem.textContent = "This field is required";
       valid = false;
     } else {
-      if (id === 'email' && !validateEmail(input.value.trim())) {
-        input.classList.add('error');
-        errorElem.textContent = "Please enter a valid email";
-        valid = false;
-      } else {
-        input.classList.remove('error');
-        errorElem.textContent = '';
-      }
+      el.classList.remove('error');
+      errorElem.textContent = '';
     }
   });
 
-  if (valid) {
-    // Simulate sending form data (here just show success message)
-    formMessage.style.color = 'green';
-    formMessage.textContent = 'Thank you! Your message has been sent.';
-    contactForm.reset();
-  } else {
+  // Additional phone and age validations
+  if (phoneInput.value.trim() && !validatePhone(phoneInput.value.trim())) {
+    phoneInput.classList.add('error');
+    phoneInput.nextElementSibling.textContent = "Invalid phone number";
+    valid = false;
+  }
+
+  if (ageInput.value.trim() && (ageInput.value < 5 || ageInput.value > 100)) {
+    ageInput.classList.add('error');
+    ageInput.nextElementSibling.textContent = "Age must be between 5 and 100";
+    valid = false;
+  }
+
+  if (!valid) {
     formMessage.style.color = '#e74c3c';
     formMessage.textContent = 'Please fix errors before submitting.';
+    return;
   }
+
+  // Build WhatsApp message
+  const message = 
+`Hello, I am interested in the Cybersquare course at Tisk School.
+Here are my details:
+
+Name: ${nameInput.value.trim()}
+Age: ${ageInput.value.trim()}
+Class: ${classInput.value.trim()}
+Admission Number: ${admissionInput.value.trim()}
+Phone Number: ${phoneInput.value.trim()}`;
+
+  // URL encode message
+  const encodedMessage = encodeURIComponent(message);
+
+  // WhatsApp URL to open
+  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+  // Open WhatsApp in new tab
+  window.open(whatsappURL, '_blank');
+
+  // Optionally reset form and show success message
+  contactForm.reset();
+  formMessage.style.color = 'green';
+  formMessage.textContent = 'Your message is ready in WhatsApp!';
 });
 
-function validateEmail(email) {
-  // Simple email regex
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return re.test(email.toLowerCase());
+function validatePhone(phone) {
+  // Allow digits, + and spaces and length 10-15 characters
+  const re = /^[+0-9\s]{10,15}$/;
+  return re.test(phone);
 }
