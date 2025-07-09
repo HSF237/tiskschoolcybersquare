@@ -26,7 +26,7 @@ const contactForm = document.getElementById('contact-form');
 const formMessage = document.getElementById('form-message');
 
 // Put your WhatsApp number here (country code + no spaces or special chars)
-const whatsappNumber = "9745544623"; // Replace with your school's WhatsApp number
+const whatsappNumber = "919745544623"; // Replace with your school's WhatsApp number
 
 contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -97,7 +97,7 @@ Phone Number: ${phoneInput.value.trim()}`;
   const encodedMessage = encodeURIComponent(message);
 
   // WhatsApp URL to open
-  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+  const whatsappURL = window.open(`https://wa.me/${whatsappNumber}?text=Test%20message`, '_blank');
 
   // Open WhatsApp in new tab
   window.open(whatsappURL, '_blank');
