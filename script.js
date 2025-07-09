@@ -23,12 +23,11 @@ navLinkElements.forEach(link => {
 // WhatsApp contact form submission
 const contactForm = document.getElementById('contact-form');
 const formMessage = document.getElementById('form-message');
-const whatsappNumber = "919745544623"; // <-- Replace with your number
+const whatsappNumber = "919745544623"; // ✅ Replace with your number
 
 contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  // Get input elements
   const nameInput = document.getElementById('name');
   const ageInput = document.getElementById('age');
   const classInput = document.getElementById('class');
@@ -71,7 +70,7 @@ contactForm.addEventListener('submit', (e) => {
     valid = false;
   }
 
-  // Validate phone number (Indian format)
+  // Validate phone number
   const phone = phoneInput.value.trim();
   const phoneRegex = /^[6-9]\d{9}$/;
   if (phone && !phoneRegex.test(phone)) {
