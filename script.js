@@ -26,7 +26,7 @@ const contactForm = document.getElementById('contact-form');
 const formMessage = document.getElementById('form-message');
 
 // Put your WhatsApp number here (country code + no spaces or special chars)
-const whatsappNumber = "919745544623"; // Replace with your school's WhatsApp number
+const whatsappNumber = "9745544623"; // Replace with your school's WhatsApp number
 
 contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
