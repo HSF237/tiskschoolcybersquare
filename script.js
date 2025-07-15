@@ -1,4 +1,4 @@
-// Responsive navigation toggling
+// ✅ Responsive navigation toggling
 const navToggle = document.getElementById('nav-toggle');
 const navLinks = document.getElementById('nav-links');
 
@@ -6,7 +6,7 @@ navToggle.addEventListener('click', () => {
   navLinks.classList.toggle('open');
 });
 
-// Smooth scrolling and active link switching
+// ✅ Smooth scrolling and active link switching
 const navLinkElements = document.querySelectorAll('.nav-link');
 
 navLinkElements.forEach(link => {
@@ -20,7 +20,7 @@ navLinkElements.forEach(link => {
   });
 });
 
-// WhatsApp contact form submission
+// ✅ WhatsApp contact form submission
 const contactForm = document.getElementById('contact-form');
 const formMessage = document.getElementById('form-message');
 const whatsappNumber = "919605229939"; // ✅ Replace with your number
@@ -108,15 +108,46 @@ Phone Number: ${phoneInput.value.trim()}`;
   contactForm.reset();
   formMessage.style.color = 'green';
   formMessage.textContent = 'Opening WhatsApp...';
-}
-// Welcome screen fade-out on timeout or click
+});
+
+// ✅ Welcome screen animation
 window.addEventListener('load', () => {
-  const welcomeScreen = document.getElementById('welcome-screen');
+  const welcome = document.getElementById('welcome-screen');
   setTimeout(() => {
-    welcomeScreen.classList.add('fade-out');
-  }, 3000); // Auto-dismiss after 3 seconds
+    welcome.classList.add('fade-out');
+    setTimeout(() => {
+      welcome.style.display = 'none';
+    }, 500);
+  }, 2500);
+});
 
-  welcomeScreen.addEventListener('click', () => {
-    welcomeScreen.classList.add('fade-out');
+// ✅ Modal logic for "Know More" buttons
+const knowMoreButtons = document.querySelectorAll('.know-more');
+const modal = document.getElementById('info-modal');
+const modalContent = document.getElementById('modal-body');
+const modalClose = document.querySelector('.close-btn');
+
+const modalTexts = {
+  "Grades 1–2": `Grades 1–2 students are introduced to Visual Coding to build logic using blocks and get hands-on with simple Robotics & IoT activities.`,
+  "Grades 3–5": `This level adds AI basics to Visual Coding and Robotics. Students begin to understand logic flow and simple automation concepts.`,
+  "Grades 6–7": `Students explore real-world programming (Python), AI, and Robotics. This prepares them for advanced applications and real coding logic.`,
+  "Grades 8+": `This group dives into Web Applications, Python Programming, AI problem solving, and advanced Robotics & IoT for real project exposure.`
+};
+
+knowMoreButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const title = btn.getAttribute('data-title');
+    modalContent.innerHTML = `<h3>${title}</h3><p>${modalTexts[title]}</p>`;
+    modal.style.display = 'flex';
   });
+});
 
+modalClose.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+window.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+});
