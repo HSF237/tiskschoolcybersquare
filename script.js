@@ -108,4 +108,15 @@ Phone Number: ${phoneInput.value.trim()}`;
   contactForm.reset();
   formMessage.style.color = 'green';
   formMessage.textContent = 'Opening WhatsApp...';
-});
+}
+// Welcome screen fade-out on timeout or click
+window.addEventListener('load', () => {
+  const welcomeScreen = document.getElementById('welcome-screen');
+  setTimeout(() => {
+    welcomeScreen.classList.add('fade-out');
+  }, 3000); // Auto-dismiss after 3 seconds
+
+  welcomeScreen.addEventListener('click', () => {
+    welcomeScreen.classList.add('fade-out');
+  });
+
