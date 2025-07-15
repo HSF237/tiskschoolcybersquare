@@ -1,50 +1,592 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tisk School Cybersquare</title>
-  <meta name="description" content="Welcome to Tisk School Cybersquare, learn and grow with our Cybersquare course." />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description"
+    content="Welcome to Tisk School Cybersquare, learn and grow with our Cybersquare course." />
+  <style>
+    /* Base Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #0b3d91;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      transition: right 0.3s ease;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color: #f9a825;
+    }
+
+    .nav-toggle {
+      display: none;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      padding: 3rem 0;
+      overflow: visible;
+      position: relative;
+      min-height: 70vh;
+    }
+
+    .hero-text {
+      flex: 1 1 400px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: #0b3d91;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideFadeIn 1s ease-out forwards 0.5s;
+    }
+
+    .hero-text p {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideFadeIn 1s ease-out forwards 1.2s;
+    }
+
+    .btn-primary {
+      background-color: #f9a825;
+      color: #0b3d91;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideFadeIn 1s ease-out forwards 1.8s;
+      display: inline-block;
+      user-select: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #c17900;
+      color: white;
+    }
+
+    .hero-image {
+      flex: 1 1 400px;
+      position: relative;
+      overflow: visible;
+      z-index: 1;
+      perspective: 1000px;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      border-radius: 10px;
+      opacity: 0;
+      animation: imageReveal 1s ease forwards 2.3s;
+      transform-style: preserve-3d;
+      box-shadow:
+        0 15px 30px rgba(249, 168, 37, 0.35),
+        0 10px 15px rgba(11, 61, 145, 0.2);
+    }
+
+    /* Headings */
+    h2 {
+      color: #0b3d91;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-bottom: 3px solid #f9a825;
+      display: inline-block;
+      padding-bottom: 0.25rem;
+    }
+
+    /* About */
+    .about-section {
+      padding: 3rem 0;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(11, 61, 145, 0.1);
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUpIn 0.8s ease forwards 0.3s;
+    }
+
+    /* Course & Curriculum */
+    .course-section {
+      padding: 3rem 0;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUpIn 0.8s ease forwards 0.6s;
+    }
+
+    .course-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .course-card {
+      flex: 1 1 280px;
+      background: #fff;
+      border: 2px solid #f9a825;
+      border-radius: 8px;
+      padding: 1.25rem;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-card:hover {
+      box-shadow: 0 0 20px rgba(249, 168, 37, 0.8);
+      transform: translateY(-5px);
+    }
+
+    .course-card h3 {
+      margin-bottom: 0.75rem;
+      color: #0b3d91;
+      user-select: none;
+    }
+
+    .course-card ul {
+      padding-left: 1rem;
+      user-select: none;
+    }
+
+    .course-card ul li {
+      list-style: disc;
+      margin-bottom: 0.5rem;
+    }
+
+    .course-fee {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f9a825;
+      margin-top: 1.5rem;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(11, 61, 145, 0.1);
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUpIn 0.8s ease forwards 0.9s;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .form-control {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #f9a825;
+      outline: none;
+    }
+
+    .error {
+      border-color: #e74c3c !important;
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+      height: 16px;
+      user-select: none;
+    }
+
+    .form-message {
+      font-weight: 600;
+      margin-top: 1rem;
+      text-align: center;
+      color: green;
+      user-select: none;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #0b3d91;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-section {
+        flex-direction: column;
+      }
+
+      .course-cards {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        background-color: #0b3d91;
+        height: 100vh;
+        width: 200px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 2rem;
+        gap: 2rem;
+        transition: right 0.3s ease;
+        z-index: 1200;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .nav-links li a {
+        font-size: 1.2rem;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+    }
+
+    /* 🔥 Welcome Screen */
+    #welcome-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0b3d91, #00509d);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 2000;
+      transition: opacity 0.7s ease;
+      user-select: none;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      overflow: hidden;
+    }
+
+    #welcome-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .welcome-content h1 {
+      font-size: 3rem;
+      animation: zoomInOut 3s ease forwards;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .welcome-content p {
+      font-size: 1.5rem;
+      margin-top: 0.8rem;
+      animation: fadeSlideUp 2.5s ease forwards 1.2s;
+      text-align: center;
+      max-width: 90vw;
+    }
+
+    /* Welcome Animations */
+    @keyframes zoomInOut {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+
+      50% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes imageReveal {
+      from {
+        opacity: 0;
+        transform: rotateY(60deg) translateX(100px);
+      }
+
+      to {
+        opacity: 1;
+        transform: rotateY(0deg) translateX(0);
+      }
+    }
+
+    @keyframes fadeUpIn {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 🪟 Modal for Know More */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1500;
+      animation: fadeInModal 0.3s ease forwards;
+    }
+
+    @keyframes fadeInModal {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2rem 2.5rem;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+      animation: popIn 0.3s ease-out;
+      user-select: none;
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .modal-content h3 {
+      color: #0b3d91;
+      margin-bottom: 1rem;
+    }
+
+    .modal-content p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #222;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      color: #0b3d91;
+      user-select: none;
+      transition: color 0.3s ease;
+      border: none;
+      background: transparent;
+      line-height: 1;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-btn:hover {
+      color: #f9a825;
+    }
+
+    /* Buttons inside course cards: ensure pointer */
+    .know-more-btn {
+      cursor: pointer;
+      user-select: none;
+    }
+  </style>
 </head>
+
 <body>
 
+  <div id="welcome-screen" aria-label="Welcome Screen" role="banner">
+    <div class="welcome-content" aria-live="polite" aria-atomic="true">
+      <h1>Tisk School Cybersquare</h1>
+      <p>Empowering the next generation through digital learning!</p>
+    </div>
+  </div>
+
   <header>
-    <nav class="navbar container">
-      <div class="logo">Tisk School Cybersquare</div>
+    <nav class="navbar container" role="navigation" aria-label="Main Navigation">
+      <div class="logo" tabindex="0">Tisk School Cybersquare</div>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#home" class="nav-link active">Home</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#course" class="nav-link">Course</a></li>
-        <li><a href="#curriculum" class="nav-link">Curriculum</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><a href="#home" class="nav-link active" tabindex="0">Home</a></li>
+        <li><a href="#about" class="nav-link" tabindex="0">About</a></li>
+        <li><a href="#course" class="nav-link" tabindex="0">Course</a></li>
+        <li><a href="#curriculum" class="nav-link" tabindex="0">Curriculum</a></li>
+        <li><a href="#contact" class="nav-link" tabindex="0">Contact</a></li>
       </ul>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</button>
     </nav>
   </header>
 
   <main>
     <!-- Hero Section -->
-    <section id="home" class="hero-section container">
+    <section id="home" class="hero-section container" tabindex="-1">
       <div class="hero-text">
         <h1>Welcome to Tisk School Cybersquare</h1>
         <p>Empowering students through our exclusive Cybersquare course — join us and unlock your potential!</p>
         <a href="#course" class="btn-primary">Explore the Course</a>
       </div>
-      <div class="hero-image">
-        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Students learning technology" />
+      <div class="hero-image" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
+          alt="Students learning technology" />
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about-section container">
+    <section id="about" class="about-section container" tabindex="-1">
       <h2>About Tisk School Cybersquare</h2>
-      <p>Tisk School Cybersquare is dedicated to providing high-quality education focused on cyber technologies and digital skills.</p>
+      <p>Tisk School Cybersquare is dedicated to providing high-quality education focused on cyber technologies and digital
+        skills.</p>
       <p>Join us to advance your skills in cybersecurity, programming, and digital creativity.</p>
     </section>
 
     <!-- Course Section -->
-    <section id="course" class="course-section container">
+    <section id="course" class="course-section container" tabindex="-1">
       <h2>Cybersquare Course Details</h2>
       <div class="course-cards">
         <div class="course-card">
@@ -63,36 +605,39 @@
     </section>
 
     <!-- Curriculum Section -->
-    <section id="curriculum" class="course-section container">
+    <section id="curriculum" class="course-section container" tabindex="-1">
       <h2>CyberSquare Courses for each categories</h2>
-      <div class="course-cards">
-        <div class="course-card">
+      <div class="course-cards" role="list">
+        <div class="course-card" role="listitem">
           <h3>Grades 1–2</h3>
           <ul>
             <li>Visual Coding</li>
             <li>Robotics & IoT</li>
           </ul>
-          <button class="btn-primary know-more-btn" data-grade="1-2">Know More</button>
+          <button class="btn-primary know-more" data-title="Grades 1–2" aria-haspopup="dialog" aria-controls="info-modal"
+            aria-expanded="false">Know More</button>
         </div>
-        <div class="course-card">
+        <div class="course-card" role="listitem">
           <h3>Grades 3–5</h3>
           <ul>
             <li>Visual Coding</li>
             <li>Robotics & IoT</li>
             <li>AI</li>
           </ul>
-          <button class="btn-primary know-more-btn" data-grade="3-5">Know More</button>
+          <button class="btn-primary know-more" data-title="Grades 3–5" aria-haspopup="dialog" aria-controls="info-modal"
+            aria-expanded="false">Know More</button>
         </div>
-        <div class="course-card">
+        <div class="course-card" role="listitem">
           <h3>Grades 6–7</h3>
           <ul>
             <li>Programming</li>
             <li>Robotics & IoT</li>
             <li>AI</li>
           </ul>
-          <button class="btn-primary know-more-btn" data-grade="6-7">Know More</button>
+          <button class="btn-primary know-more" data-title="Grades 6–7" aria-haspopup="dialog" aria-controls="info-modal"
+            aria-expanded="false">Know More</button>
         </div>
-        <div class="course-card">
+        <div class="course-card" role="listitem">
           <h3>Grades 8+</h3>
           <ul>
             <li>Programming</li>
@@ -100,37 +645,248 @@
             <li>AI</li>
             <li>Robotics & IoT</li>
           </ul>
-          <button class="btn-primary know-more-btn" data-grade="8+">Know More</button>
+          <button class="btn-primary know-more" data-title="Grades 8+" aria-haspopup="dialog" aria-controls="info-modal"
+            aria-expanded="false">Know More</button>
         </div>
       </div>
-      <p class="course-fee"><strong>Course Fee:</strong> ₹2,000/year</p>
+      <p class="course-fee"><strong>Course
+          Fee:</strong> ₹2,000/year</p>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section container">
+    <section id="contact" class="contact-section container" tabindex="-1">
       <h2>Contact Us</h2>
       <form id="contact-form" novalidate>
-        <div class="form-control"><label for="name">Full Name *</label><input type="text" id="name" required /><small class="error-message"></small></div>
-        <div class="form-control"><label for="age">Age *</label><input type="number" id="age" required /><small class="error-message"></small></div>
-        <div class="form-control"><label for="class">Class *</label><input type="text" id="class" required /><small class="error-message"></small></div>
-        <div class="form-control"><label for="admission">Admission Number *</label><input type="text" id="admission" required /><small class="error-message"></small></div>
-        <div class="form-control"><label for="phone">Phone Number *</label><input type="tel" id="phone" required /><small class="error-message"></small></div>
+        <div class="form-control"><label for="name">Full Name *</label><input type="text" id="name" required
+            aria-required="true" aria-describedby="name-error" /><small class="error-message" id="name-error"
+            aria-live="polite"></small></div>
+        <div class="form-control"><label for="age">Age *</label><input type="number" id="age" required
+            aria-required="true" aria-describedby="age-error" /><small class="error-message" id="age-error"
+            aria-live="polite"></small></div>
+        <div class="form-control"><label for="class">Class *</label><input type="text" id="class" required
+            aria-required="true" aria-describedby="class-error" /><small class="error-message" id="class-error"
+            aria-live="polite"></small></div>
+        <div class="form-control"><label for="admission">Admission Number *</label><input type="text" id="admission"
+            required aria-required="true" aria-describedby="admission-error" /><small class="error-message"
+            id="admission-error" aria-live="polite"></small></div>
+        <div class="form-control"><label for="phone">Phone Number *</label><input type="tel" id="phone" required
+            aria-required="true" aria-describedby="phone-error" /><small class="error-message" id="phone-error"
+            aria-live="polite"></small></div>
         <button type="submit" class="btn-primary">Send via WhatsApp</button>
-        <p id="form-message" class="form-message"></p>
+        <p id="form-message" class="form-message" aria-live="assertive"></p>
       </form>
     </section>
   </main>
 
   <!-- ℹ️ Modal for "Know More" -->
-  <div id="info-modal" class="modal">
+  <div id="info-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description"
+    tabindex="-1" aria-hidden="true">
     <div class="modal-content">
-      <span class="close-btn">&times;</span>
+      <button class="close-btn" aria-label="Close modal">&times;</button>
       <h3 id="modal-title"></h3>
       <p id="modal-description"></p>
     </div>
   </div>
 
-  <footer class="footer"><div class="container"><p>&copy; 2024 Tisk School Cybersquare. All rights reserved.</p></div></footer>
-  <script src="script.js"></script>
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; 2024 Tisk School Cybersquare. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Responsive navigation toggling
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Smooth scrolling and active link switching
+    const navLinkElements = document.querySelectorAll('.nav-link');
+
+    navLinkElements.forEach(link => {
+      link.addEventListener('click', function () {
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', false);
+        }
+        navLinkElements.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // WhatsApp contact form submission
+    const contactForm = document.getElementById('contact-form');
+    const formMessage = document.getElementById('form-message');
+    const whatsappNumber = "919605229939"; // Replace with your number
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nameInput = document.getElementById('name');
+      const ageInput = document.getElementById('age');
+      const classInput = document.getElementById('class');
+      const admissionInput = document.getElementById('admission');
+      const phoneInput = document.getElementById('phone');
+
+      const inputs = [
+        { el: nameInput, name: 'Full Name' },
+        { el: ageInput, name: 'Age' },
+        { el: classInput, name: 'Class' },
+        { el: admissionInput, name: 'Admission Number' },
+        { el: phoneInput, name: 'Phone Number' }
+      ];
+
+      let valid = true;
+
+      // Clear previous errors
+      inputs.forEach(({ el }) => {
+        el.classList.remove('error');
+        const errorElem = el.nextElementSibling;
+        if (errorElem) errorElem.textContent = '';
+      });
+
+      formMessage.textContent = '';
+
+      // Validate inputs
+      inputs.forEach(({ el, name }) => {
+        const value = el.value.trim();
+        const errorElem = el.nextElementSibling;
+        if (!value) {
+          el.classList.add('error');
+          if (errorElem) errorElem.textContent = `${name} is required`;
+          valid = false;
+        }
+      });
+
+      // Validate age
+      const ageValue = ageInput.value.trim();
+      const age = parseInt(ageValue);
+      if (ageValue && (isNaN(age) || age < 5 || age > 100)) {
+        ageInput.classList.add('error');
+        ageInput.nextElementSibling.textContent = "Age must be between 5 and 100";
+        valid = false;
+      }
+
+      // Validate phone number
+      const phone = phoneInput.value.trim();
+      const phoneRegex = /^[6-9]\d{9}$/;
+      if (phone && !phoneRegex.test(phone)) {
+        phoneInput.classList.add('error');
+        phoneInput.nextElementSibling.textContent = "Invalid phone number";
+        valid = false;
+      }
+
+      if (!valid) {
+        formMessage.style.color = '#e74c3c';
+        formMessage.textContent = 'Please correct the highlighted fields.';
+        return;
+      }
+
+      // Build WhatsApp message
+      const message =
+        `Hello, I am interested in the Cybersquare course at Tisk School.\n\n` +
+        `Name: ${nameInput.value.trim()}\n` +
+        `Age: ${ageInput.value.trim()}\n` +
+        `Class: ${classInput.value.trim()}\n` +
+        `Admission Number: ${admissionInput.value.trim()}\n` +
+        `Phone Number: ${phoneInput.value.trim()}`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+      // Open WhatsApp
+      const opened = window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+      if (!opened) {
+        window.location.href = whatsappURL;
+      }
+
+      // Reset form
+      contactForm.reset();
+      formMessage.style.color = 'green';
+      formMessage.textContent = 'Opening WhatsApp...';
+    });
+
+    // Welcome screen animation & removal
+    window.addEventListener('load', () => {
+      const welcome = document.getElementById('welcome-screen');
+      setTimeout(() => {
+        welcome.classList.add('fade-out');
+        setTimeout(() => {
+          welcome.style.display = 'none';
+          // Move focus to main content for accessibility
+          const mainContent = document.querySelector('main');
+          if (mainContent) {
+            mainContent.setAttribute('tabindex', '-1');
+            mainContent.focus();
+          }
+        }, 700);
+      }, 3000);
+    });
+
+    // Modal logic for "Know More" buttons
+    const knowMoreButtons = document.querySelectorAll('.know-more');
+    const modal = document.getElementById('info-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    const modalClose = modal.querySelector('.close-btn');
+
+    const modalTexts = {
+      "Grades 1–2": `Grades 1–2 students are introduced to Visual Coding to build logic using blocks and get hands-on with simple Robotics & IoT activities.`,
+      "Grades 3–5": `This level adds AI basics to Visual Coding and Robotics. Students begin to understand logic flow and simple automation concepts.`,
+      "Grades 6–7": `Students explore real-world programming (Python), AI, and Robotics. This prepares them for advanced applications and real coding logic.`,
+      "Grades 8+": `This group dives into Web Applications, Python Programming, AI problem solving, and advanced Robotics & IoT for real project exposure.`
+    };
+
+    // Track last focused element to return focus after modal close
+    let lastFocusedElement = null;
+
+    knowMoreButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const title = btn.getAttribute('data-title');
+        modalTitle.textContent = title;
+        modalDescription.textContent = modalTexts[title] || 'Description not available.';
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden', 'false');
+        lastFocusedElement = document.activeElement;
+        // Update aria-expanded on the button
+        btn.setAttribute('aria-expanded', 'true');
+        // Set focus inside modal
+        modalClose.focus();
+        // Disable body scroll
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    // Close modal on clicking outside modal-content
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Close modal on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.style.display === 'flex') {
+        closeModal();
+      }
+    });
+
+    function closeModal() {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      // Restore scroll
+      document.body.style.overflow = '';
+      // Restore aria-expanded to false for all know-more buttons
+      knowMoreButtons.forEach(btn => btn.setAttribute('aria-expanded', 'false'));
+      // Return focus to last focused element that opened modal
+      if (lastFocusedElement) lastFocusedElement.focus();
+    }
+  </script>
 </body>
+
 </html>
