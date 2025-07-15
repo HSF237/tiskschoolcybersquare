@@ -8,6 +8,15 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- 🎬 Welcome Screen -->
+  <div id="welcome-screen">
+    <div class="welcome-content">
+      <h1>Welcome to Tisk School Cybersquare</h1>
+      <p>Empowering the next generation with cyber skills</p>
+    </div>
+  </div>
+
   <header>
     <nav class="navbar container">
       <div class="logo">Tisk School Cybersquare</div>
@@ -25,12 +34,11 @@
   <main>
     <!-- Hero Section -->
     <section id="home" class="hero-section container">
-        <div id="welcome-screen">
-  <div class="welcome-content">
-    <h1>Welcome to Tisk School Cybersquare</h1>
-    <p>Empowering the next generation with cyber skills</p>
-  </div>
-</div>
+      <div class="hero-text">
+        <h1>Welcome to Tisk School Cybersquare</h1>
+        <p>Empowering students through our exclusive Cybersquare course — join us and unlock your potential!</p>
+        <a href="#course" class="btn-primary">Explore the Course</a>
+      </div>
       <div class="hero-image">
         <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Students learning technology" />
       </div>
@@ -62,7 +70,7 @@
       </div>
     </section>
 
-    <!-- NEW Curriculum Section -->
+    <!-- Curriculum Section -->
     <section id="curriculum" class="course-section container">
       <h2>CyberSquare Courses for each categories</h2>
       <div class="course-cards">
@@ -72,6 +80,7 @@
             <li>Visual Coding</li>
             <li>Robotics & IoT</li>
           </ul>
+          <button class="btn-primary know-more-btn" data-grade="1-2">Know More</button>
         </div>
         <div class="course-card">
           <h3>Grades 3–5</h3>
@@ -80,6 +89,7 @@
             <li>Robotics & IoT</li>
             <li>AI</li>
           </ul>
+          <button class="btn-primary know-more-btn" data-grade="3-5">Know More</button>
         </div>
         <div class="course-card">
           <h3>Grades 6–7</h3>
@@ -88,6 +98,7 @@
             <li>Robotics & IoT</li>
             <li>AI</li>
           </ul>
+          <button class="btn-primary know-more-btn" data-grade="6-7">Know More</button>
         </div>
         <div class="course-card">
           <h3>Grades 8+</h3>
@@ -97,6 +108,7 @@
             <li>AI</li>
             <li>Robotics & IoT</li>
           </ul>
+          <button class="btn-primary know-more-btn" data-grade="8+">Know More</button>
         </div>
       </div>
       <p class="course-fee"><strong>Course Fee:</strong> ₹2,000/year</p>
@@ -117,14 +129,16 @@
     </section>
   </main>
 
+  <!-- ℹ️ Modal for "Know More" -->
+  <div id="info-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3 id="modal-title"></h3>
+      <p id="modal-description"></p>
+    </div>
+  </div>
+
   <footer class="footer"><div class="container"><p>&copy; 2024 Tisk School Cybersquare. All rights reserved.</p></div></footer>
   <script src="script.js"></script>
- <div id="info-modal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <h3 id="modal-title"></h3>
-    <p id="modal-description"></p>
-  </div>
-</div>
 </body>
 </html>
