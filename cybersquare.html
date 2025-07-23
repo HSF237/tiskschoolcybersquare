@@ -1,1 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cybersquare Gallery - Tisk School Cybersquare</title>
+  <meta name="description" content="Gallery of photos and videos showcasing Cybersquare patterns and creativity." />
+  <style>
+    /* Base Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+      flex-grow: 1;
+      padding: 3rem 0;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #0b3d91;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      transition: right 0.3s ease;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      user-select: none;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color: #f9a825;
+    }
+
+    .nav-toggle {
+      display: none;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Responsive Navbar */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        background-color: #0b3d91;
+        height: 100vh;
+        width: 200px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 2rem;
+        gap: 2rem;
+        transition: right 0.3s ease;
+        z-index: 1200;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .nav-links li a {
+        font-size: 1.2rem;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+    }
+
+    /* Heading */
+    h1 {
+      font-size: 2.6rem;
+      margin-bottom: 1rem;
+      color: #0b3d91;
+      user-select: none;
+      text-align: center;
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(11, 61, 145, 0.1);
+      padding: 1rem 2rem 3rem 2rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-auto-rows: auto;
+      gap: 1.5rem;
+    }
+
+    .gallery-photo {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow:
+        0 8px 15px rgba(249, 168, 37, 0.3),
+        0 4px 8px rgba(11, 61, 145, 0.1);
+      transition: transform 0.3s ease;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .gallery-photo:hover {
+      transform: scale(1.05);
+    }
+
+    .gallery-video {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow:
+        0 10px 20px rgba(249, 168, 37, 0.4),
+        0 6px 10px rgba(11, 61, 145, 0.15);
+      user-select: none;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #0b3d91;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      user-select: none;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar container" role="navigation" aria-label="Main Navigation">
+      <div class="logo" tabindex="0" onclick="location.href='index.html'" onkeypress="if(event.key==='Enter'){location.href='index.html'}">Tisk School Cybersquare</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link" tabindex="0">Home</a></li>
+        <li><a href="index.html#about" class="nav-link" tabindex="0">About</a></li>
+        <li><a href="index.html#course" class="nav-link" tabindex="0">Course</a></li>
+        <li><a href="index.html#curriculum" class="nav-link" tabindex="0">Curriculum</a></li>
+        <li><a href="cybersquare.html" class="nav-link active" tabindex="0" aria-current="page">Cybersquare Gallery</a></li>
+        <li><a href="index.html#contact" class="nav-link" tabindex="0">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</button>
+    </nav>
+  </header>
+
+  <main class="container" tabindex="-1">
+    <h1>Cybersquare Gallery</h1>
+    <section class="gallery-section" aria-label="Cybersquare Gallery">
+      <div class="gallery-grid">
+        <!-- Two photos side by side -->
+        <img src="gallery-photo1.jpg" alt="Abstract pattern in blue and gold" class="gallery-photo" />
+        <img src="gallery-photo2.jpg" alt="Digital art with cyber theme" class="gallery-photo" />
+
+        <!-- One video full width -->
+        <video class="gallery-video" controls preload="metadata" aria-label="Video showing cyber patterns" tabindex="0">
+          <source src="gallery-video1.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- Next two photos side by side -->
+        <img src="gallery-photo3.jpg" alt="Colorful geometric pattern" class="gallery-photo" />
+        <img src="gallery-photo4.jpg" alt="Futuristic digital network art" class="gallery-photo" />
+
+        <!-- Another video full width -->
+        <video class="gallery-video" controls preload="metadata" aria-label="Video showing digital creativity" tabindex="0">
+          <source src="gallery-video2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- Two more photos side by side -->
+        <img src="gallery-photo5.jpg" alt="Cybersecurity related visual pattern" class="gallery-photo" />
+        <img src="gallery-photo6.jpg" alt="Programming code abstract art" class="gallery-photo" />
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; 2025 Tisk School Cybersquare. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Responsive navigation toggling
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close nav on link click (for mobile)
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
