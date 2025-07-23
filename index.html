@@ -537,6 +537,58 @@
       cursor: pointer;
       user-select: none;
     }
+
+    /* Cybersquare Gallery Section */
+    #gallery {
+      padding: 3rem 0;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(11, 61, 145, 0.1);
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUpIn 0.8s ease forwards 1s;
+    }
+
+    /* Gallery Grid container */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-auto-rows: auto;
+      gap: 1.5rem;
+    }
+
+    /* For photos two in a row horizontally */
+    .gallery-photo {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow:
+        0 8px 15px rgba(249,168,37,0.3),
+        0 4px 8px rgba(11,61,145,0.1);
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+
+    .gallery-photo:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+
+    /* Video styling - full width row */
+    .gallery-video {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow:
+        0 10px 20px rgba(249,168,37,0.4),
+        0 6px 10px rgba(11,61,145,0.15);
+      user-select: none;
+    }
+
+    /* Pattern layout:
+       The gallery will place 2 photos side-by-side, then 1 video full width, then 2 photos, etc. 
+       We will mark them in HTML and grid will naturally flow */
   </style>
 </head>
 
@@ -553,10 +605,11 @@
     <nav class="navbar container" role="navigation" aria-label="Main Navigation">
       <div class="logo" tabindex="0">Tisk School Cybersquare</div>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#home" class="nav-link active" tabindex="0">Home</a></li>
+        <li><a href="#home" class="nav-link" tabindex="0">Home</a></li>
         <li><a href="#about" class="nav-link" tabindex="0">About</a></li>
         <li><a href="#course" class="nav-link" tabindex="0">Course</a></li>
         <li><a href="#curriculum" class="nav-link" tabindex="0">Curriculum</a></li>
+        <li><a href="#gallery" class="nav-link" tabindex="0">Cybersquare Gallery</a></li>
         <li><a href="#contact" class="nav-link" tabindex="0">Contact</a></li>
       </ul>
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</button>
@@ -651,6 +704,36 @@
       </div>
       <p class="course-fee"><strong>Course
           Fee:</strong> ₹2,000/year</p>
+    </section>
+
+    <!-- Cybersquare Gallery Section -->
+    <section id="gallery" class="container" tabindex="-1" aria-label="Cybersquare Gallery">
+      <h2>Cybersquare Gallery</h2>
+      <div class="gallery-grid">
+        <!-- Two photos side by side -->
+        <img src="gallery-photo1.jpg" alt="Abstract pattern in blue and gold" class="gallery-photo" />
+        <img src="gallery-photo2.jpg" alt="Digital art with cyber theme" class="gallery-photo" />
+
+        <!-- One video full width -->
+        <video class="gallery-video" controls preload="metadata" aria-label="Video showing cyber patterns">
+          <source src="gallery-video1.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- Next two photos side by side -->
+        <img src="gallery-photo3.jpg" alt="Colorful geometric pattern" class="gallery-photo" />
+        <img src="gallery-photo4.jpg" alt="Futuristic digital network art" class="gallery-photo" />
+
+        <!-- Another video full width -->
+        <video class="gallery-video" controls preload="metadata" aria-label="Video showing digital creativity">
+          <source src="gallery-video2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- Two more photos side by side -->
+        <img src="gallery-photo5.jpg" alt="Cybersecurity related visual pattern" class="gallery-photo" />
+        <img src="gallery-photo6.jpg" alt="Programming code abstract art" class="gallery-photo" />
+      </div>
     </section>
 
     <!-- Contact Section -->
